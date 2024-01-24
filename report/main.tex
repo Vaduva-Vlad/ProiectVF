@@ -32,7 +32,7 @@ ACAS XU refers to the Automatic Collision Avoidance System - Experimental Upgrad
 
 ACAS II is based on the Traffic Advisory (TA) and Resolution Advisory (RA) concepts. When ACAS II detects a potential collision threat, it provides pilots with advisories to take evasive action, such as a vertical resolution advisory to climb or descend.
 
-ACAS XU represents advancements and upgrades to the existing system, incorporating improved algorithms and technologies to enhance collision avoidance capabilities. It's important to note that developments in aviation technologies may have occurred since my last update, so you may want to check for the latest information to ensure accuracy.
+ACAS XU represents advancements and upgrades to the existing system, incorporating improved algorithms and technologies to enhance collision avoidance capabilities. 
 
 \subsection{Architecture Elements}
 ACAS Xu uses FC and Relu for its architecture.\newline
@@ -84,6 +84,8 @@ Alpha-beta-CROWN will begin to verify the benchmark and at the end it will outpu
 Here, "total verified" and "total falsified" are the number of instances in which the benchmark returned a correct and incorrect answer, respectively. We can also notice a timeout of 0, which means that none of the instances timed out during the verification process.
 
 \subsection{Nnenum \cite{nnenum}}
+NNenum is a high performance neural network verification tool. It uses multiple layers of abstractions in order to quickly verify neural networks without the cost of completeness. During VNN-COMP 2020, nnenum was the fastest running tool. Even though every contestant ran their tool on their own hardware, nnenum's speed is attributed to several algorithmic optimizations\cite{bak2021nfm}.
+\newline
 Prerequisites: 
 \begin{itemize}
     \item Docker
@@ -159,8 +161,10 @@ The raw results from our testing can be found at the GitHub repository: \url{htt
 \subsection{Obstacles encountered}
 Although the process of running both tools is fairly smooth, we encountered a couple of problems along the way:
 \begin{itemize}
-    \item alpha-beta-CROWN runs only on NVidia graphics cards. As such, the tool could only be run by the team members who have an NVidia graphics card.
+    \item Alpha-beta-CROWN runs only on NVidia graphics cards. As such, the tool could only be run by the team members who have an NVidia graphics card.
+    \item Alpha-beta-CROWN had a more complicated and error-prone installation process, requiring the installation of miniconda, Auto-LiRPA and the tool itself.
     \item Nnenum had to be run twice, because the first run returned an error on one of the instances. However, subsequent runs were successful, so we decided to give nnenum the maximum score.
+    \item We've managed to install nnenum only on Windows, as the Docker installer did not work on Linux and manual installation returned many errors.
 \end{itemize}
 \section{Conclusions}
 ACAS Xu is collision avoidance system that aims to increase the safety of air traffic. However, as suggested by our tests, the accuracy of the model (74.73\%) should be higher in order to reach this goal. This is why neural network verification is important. It is an important step towards assuring that the neural network is safe to use before integrating it into the aircraft. It is also a cost-saving measure as it reduces the failure rate in physical planes and lowers the number of materials wasted.

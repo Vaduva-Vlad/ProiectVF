@@ -1,0 +1,119 @@
+\documentclass[aspectratio=169]{beamer}
+%\documentclass[handout,aspectratio=169]{beamer}
+\usepackage{beamerthemehelianthus}
+
+%%%%%% Refer to beamerthemehelianthus.md for details of using the package %%%%%%%
+
+\title{Verificarea ACAS Xu utilizând Alpha-Beta-Crown și Nnenum}
+\author{Văduva Vlad-Andrei, Granu Vlad-Dragoș, Iordache Constantin, Hrițu Toma-Vlad
+\small Coordonator: Conf. dr. Erașcu Mădălina}
+\institute[rtk]{Universitatea de Vest din Timișoara}
+\date{1 January 2023}
+\logo{%
+	\includegraphics[width=.08\paperwidth]{snowy-mountain-river-scene-png-5690341.png}%
+	\hskip2ex%
+	\includegraphics[width=.08\paperwidth]{nature-creek-mountain-design-5690340.png}%
+}
+\leftfooter{Created with \LaTeX}
+\rightfooter{Powered by Beamer}
+
+\begin{document}
+  \titlebackgroundimage{petronas-towers-1222083.jpg}
+  \settitlepagestyle
+  
+  
+  \setbeamertemplate{title}[default][center]
+  \setbeamertemplate{author}[default][center]
+  \setbeamertemplate{institute}[default][center]
+  
+	\maketitle
+
+  \begin{frame}{Motivația}
+    \begin{itemize}
+      \item Verificarea corectitudinii benchmark-ului ACAS Xu 
+      \newline
+      \item Imbunătățirea siguranței spațiului aerian
+      \newline
+      \item Dezvoltarea continuă a benchmark-ului
+      \newline
+    \end{itemize}
+  \end{frame}
+  
+  \begin{frame}{ACAS Xu}
+        \framesubtitle{Automatic Collision Avoidance System - Experimental Upgrade}
+  	\begin{itemize}
+  		\item Sistem de siguranță proiectat pentru reducerea riscului de coliziuni între avioane
+    \newline
+  		\item Instruiește piloții să efectueze manevre evazive
+    \newline
+  		\item Folosește FC și Relu pentru arhitectura sa
+    \newline
+  	\end{itemize}
+  \end{frame}
+
+  \begin{frame}{Tool-urile utilizate}
+      \framesubtitle{Alpha-Beta-CROWN}
+      Tool de verificare a rețelelor neuronale bazat pe algoritmul branch-and-bound. \newline
+      \begin{itemize}
+          \item Scalare bună pentru rețelele neuronale mari
+          \newline
+          \item Utilizează placa video pentru accelerare
+          \newline
+        \end{itemize}
+        Provocări întâmpinate:\newline
+        \begin{itemize}
+          \item Funcționează doar cu plăcile video NVidia \newline
+          \item Proces mai complicat de instalare
+      \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Tool-urile utilizate}
+  \framesubtitle{Nnenum}
+  Tool de verificare a rețelelor neuronale care folosește straturi multiple de abstractizare pentru verificarea rapidă.\newline
+      \begin{itemize}
+          \item Cel mai rapid tool din VNN-COMP 2020 \newline
+          \item Instalare ușoară cu Docker \newline
+      \end{itemize}
+      Provocări întâmpinate: \newline
+      \begin{itemize}
+          \item Eroare la prima rulare a tool-ului \newline
+          \item Nu l-am putut instala pe Linux
+      \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Rezultate experimentale}
+      \begin{tabular}{c c c c c c c}
+    \hline
+    \# & Tool & Verified & Falsified & Penalty & Score & Percent \\
+    \hline
+    1 & nnenum & 139 & 47 & 0 & 1860 & 100\% \\
+    2 & \alpha - \beta -CROWN & 139 & 47 & 0 & 1860 & 100\%
+    \end{tabular}
+    \newline
+    \begin{itemize}
+        \item Scor de 100\% pentru ambele tool-uri\newline
+        \item Nicio penalizare \newline
+    \end{itemize}
+    Formula de calculare a scorului:
+    \newline
+    \[Verified*10+Falsified*10-Penalty*150\]
+  \end{frame}
+
+  \begin{frame}{Concluzii}
+      \begin{itemize}
+          \item Acuratețe de 74,73\% a benchmark-ului \newline
+          \item Verificarea benchmark-urilor este importantă pentru asigurarea bunei funcționări a rețelelor neuronale\newline
+          \item Verificarea tool-urilor oferă o îmbunătățire continuă atât a tool-urilor, cât și a benchmark-urilor\newline
+      \end{itemize}
+  \end{frame}
+  
+  \backgroundimage{the-great-cave-1531993.jpg}
+  \setbackgroundstyle
+  \setbackgroundtint{black}
+  \setbackgroundtintopacity{0.5}
+  \begin{frame}
+  	\begin{tikzpicture}[overlay,remember picture]
+  		\node[anchor=east,font=\bfseries\Huge] at ([xshift=-2ex]current page.east) {\textcolor{white}{Mulțumim!}};
+  	\end{tikzpicture}
+  \end{frame}
+\end{document}

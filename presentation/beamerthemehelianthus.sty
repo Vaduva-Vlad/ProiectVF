@@ -1,0 +1,423 @@
+\RequirePackage{tikz}
+\usetikzlibrary{shapes}
+\mode<presentation>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Font theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage[sfdefault,light]{plex-sans}
+
+\setbeamerfont{title}{family=\sffamily,series=\bfseries,size=\huge}
+\setbeamerfont{subtitle}{family=\sffamily,size=\normalsize}
+\setbeamerfont{frametitle}{family=\sffamily,series=\bfseries}
+% \setbeamerfont{institute}{family=\sffamily,size=\normalsize}
+\setbeamerfont{foot}{family=\sffamily,size=\bfseries\tiny}
+\setbeamerfont{footnote}{family=\sffamily,size=\tiny}
+\setbeamerfont{section page title}{series=\bfseries,size=\LARGE}
+\setbeamerfont{section page number}{series=\bfseries}
+\setbeamerfont{section page subtitle}{series=\bfseries,size=\Large}
+
+\renewcommand*\familydefault{\sfdefault}
+
+\setbeamertemplate{enumerate item}[default]
+\setbeamerfont{enumerate item}{family=\sffamily}
+\setbeamercolor{enumerate item}{fg=black}
+\setbeamertemplate{enumerate subitem}[default]
+\setbeamerfont{enumerate subitem}{family=\sffamily}
+\setbeamercolor{enumerate subitem}{fg=black}
+\setbeamertemplate{enumerate subsubitem}[default]
+\setbeamerfont{enumerate subsubitem}{family=\sffamily}
+\setbeamercolor{enumerate subsubitem}{fg=black}
+\setbeamertemplate{itemize item}[default]
+%\setbeamertemplate{itemize item}{\ldots}
+\setbeamerfont{itemize item}{family=\sffamily}
+\setbeamercolor{itemize item}{fg=black}
+\setbeamertemplate{itemize subitem}[square]
+\setbeamerfont{itemize subitem}{family=\sffamily}
+\setbeamercolor{itemize subitem}{fg=black}
+\setbeamertemplate{itemize subsubitem}[circle]
+\setbeamerfont{itemize subsubitem}{family=\sffamily}
+\setbeamercolor{itemize subsubitem}{fg=black}
+
+\setbeamerfont{block title}{size=\large,parent={structure,block body},series=\bfseries}
+\setbeamerfont{block title alerted}{parent={block title,alerted text}}
+\setbeamerfont{block title example}{parent={block title,example text}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Color theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{darkblue}{rgb}{0,0.2,0.45}
+\definecolor{lightblue}{rgb}{0.15,0.66,0.88}
+\definecolor{orange}{rgb}{0.97,0.58,0.12}
+\definecolor{red}{HTML}{F44336}
+
+\setbeamercolor{structure}{fg=darkblue}
+
+\setbeamercolor{alerted text}{fg=darkblue!80!yellow}
+\setbeamercolor*{palette primary}{fg=white,bg=darkblue}
+\setbeamercolor*{palette secondary}{fg=darkblue,bg=lightblue}
+\setbeamercolor*{palette tertiary}{fg=orange,bg=white}
+\setbeamercolor*{palette quaternary}{fg=darkblue,bg=yellow!20!orange}
+
+\setbeamercolor*{sidebar}{fg=darkblue,bg=orange!75!white}
+
+\setbeamercolor*{palette sidebar primary}{fg=darkblue!10!black}
+\setbeamercolor*{palette sidebar secondary}{fg=white}
+\setbeamercolor*{palette sidebar tertiary}{fg=darkblue!50!black}
+\setbeamercolor*{palette sidebar quaternary}{fg=yellow!10!orange}
+
+\setbeamercolor*{titlelike}{fg=orange,bg=}
+\setbeamercolor{title}{fg=darkblue,bg=}
+\setbeamercolor{section page title}{fg=white,bg=}
+\setbeamercolor{section page number}{fg=lightblue,bg=}
+\setbeamercolor{section page subtitle}{fg=orange,bg=}
+\setbeamercolor{subtitle}{fg=lightblue,bg=}
+\setbeamercolor{author}{fg=darkblue,bg=}
+\setbeamercolor{institute}{fg=darkblue,bg=}
+\setbeamercolor{date}{fg=darkblue,bg=}
+\setbeamercolor{frametitle}{fg=orange,bg=}
+\setbeamercolor{framesubtitle}{fg=darkblue}
+% \setbeamercolor{frametitle right}{bg=yellow!60!orange}
+\setbeamercolor{cover footer}{bg=,fg=darkblue}
+
+\setbeamercolor*{separation line}{}
+\setbeamercolor*{fine separation line}{}
+
+\setbeamercolor{block body alerted}{bg=red!10}
+\setbeamercolor{block title alerted}{bg=red,fg=white}
+\setbeamercolor{block body}{bg=darkblue!10}
+\setbeamercolor{block title}{parent=palette primary}
+\setbeamercolor{block body example}{bg=lightblue!10}
+\setbeamercolor{block title example}{parent=palette secondary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outer theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%---------------------------------------
+% Background
+%---------------------------------------
+
+\def\thebackgroundimage{}
+\def\backgroundimage#1{\def\thebackgroundimage{#1}}
+\def\insertbackgroundimage{\thebackgroundimage}
+
+\def\backgroundtint{white}
+\def\setbackgroundtint#1{\def\backgroundtint{#1}}
+\def\backgroundtintopacity{0}
+\def\setbackgroundtintopacity#1{\def\backgroundtintopacity{#1}}
+
+\def\thetitlebackgroundimage{}
+\def\titlebackgroundimage#1{\def\thetitlebackgroundimage{#1}}
+\def\inserttitlebackgroundimage{\thetitlebackgroundimage}
+
+\def\titlebackgroundtint{white}
+\def\settitlebackgroundtint#1{\def\titlebackgroundtint{#1}}
+\def\titlebackgroundtintopacity{0.8}
+\def\settitlebackgroundtintopacity#1{\def\titlebackgroundtintopacity{#1}}
+
+\def\thesectionbackgroundimage{}
+\def\sectionbackgroundimage#1{\def\thesectionbackgroundimage{#1}}
+\def\insertsectionbackgroundimage{\thesectionbackgroundimage}
+
+\def\sectionbackgroundtint{white}
+\def\setsectionbackgroundtint#1{\def\sectionbackgroundtint{#1}}
+\def\sectionbackgroundtintopacity{0}
+\def\setsectionbackgroundtintopacity#1{\def\sectionbackgroundtintopacity{#1}}
+
+\defbeamertemplate*{background}{helianthus}
+{}
+
+\defbeamertemplate*{background canvas}{helianthustitle}
+{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \node at (current page.center) {
+      \ifx\thetitlebackgroundimage\@empty
+      \else\includegraphics[width=\paperwidth,height=\paperheight]{\inserttitlebackgroundimage}\fi
+    };
+    \node[fill=\titlebackgroundtint,opacity=\titlebackgroundtintopacity,minimum width=\paperwidth,minimum height=\paperheight] at (current page.center) {};
+  \end{tikzpicture}
+}
+
+\defbeamertemplate*{background canvas}{helianthussection}
+{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \node at (current page.center) {
+      \ifx\thesectionbackgroundimage\@empty
+      \else\includegraphics[width=\paperwidth,height=\paperheight]{\insertsectionbackgroundimage}\fi
+    };
+    \node[fill=\sectionbackgroundtint,opacity=\sectionbackgroundtintopacity,minimum width=\paperwidth,minimum height=\paperheight] at (current page.center) {};
+  \end{tikzpicture}
+}
+
+\defbeamertemplate*{background canvas}{helianthusbackground}
+{%
+  \begin{tikzpicture}[overlay,remember picture]
+    \node at (current page.center) {
+      \ifx\thebackgroundimage\@empty
+      \else\includegraphics[width=\paperwidth,height=\paperheight]{\insertbackgroundimage}\fi
+    };
+    \node[fill=\backgroundtint,opacity=\backgroundtintopacity,minimum width=\paperwidth,minimum height=\paperheight] at (current page.center) {};
+  \end{tikzpicture}
+}
+
+\defbeamertemplate*{background canvas}{helianthus}
+{%
+  \ifbeamercolorempty[bg]{background canvas}{}{\color{bg}\vrule width\paperwidth height\paperheight}%
+}
+
+%---------------------------------------
+% Frame title
+%---------------------------------------
+
+\defbeamertemplate*{frametitle}{helianthus}[1][left]
+{%
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamercolorbox}[sep=0.3cm,#1,wd=\the\@tempdima]{frametitle}
+    \usebeamerfont{frametitle}%
+    \vbox{}\vskip-1ex%
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    \strut\insertframetitle\strut\par%
+    {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\strut\insertframesubtitle\strut\par}%
+    \vskip-1ex%
+    \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+}
+
+%---------------------------------------
+% Navigation symbols
+%---------------------------------------
+
+\defbeamertemplate*{navigation symbols}{helianthusnonavi}{}
+
+\defbeamertemplate*{navigation symbols}{helianthus}
+{%
+  \hbox{%
+    \hbox{\insertslidenavigationsymbol}
+    \hbox{\insertframenavigationsymbol}
+    \hbox{\insertsubsectionnavigationsymbol}
+    \hbox{\insertsectionnavigationsymbol}
+    \hbox{\insertdocnavigationsymbol}%
+  }%
+}
+
+% No navigation symbols in handout or trans mode:
+\only<handout| trans>{\setbeamertemplate{navigation symbols}{}}
+
+%---------------------------------------
+% Template
+%---------------------------------------
+\defbeamertemplate*{sidebar left}{helianthustitle}{}
+\defbeamertemplate*{sidebar right}{helianthustitle}
+{
+  \vskip5pt%
+  \llap{\usebeamertemplate{titlegraphic}\hskip5pt}
+  \vfill
+  \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+  \vskip2pt%
+}
+
+\defbeamertemplate*{sidebar left}{helianthussection}{}
+\defbeamertemplate*{sidebar right}{helianthusnologo}
+{
+  \vfill
+  \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+  \vskip2pt%
+}
+
+\defbeamertemplate*{sidebar left}{helianthus}{}
+\defbeamertemplate*{sidebar right}{helianthus}
+{
+  \vskip5pt%
+  \llap{\insertlogo\hskip5pt}%
+  \vfill
+  \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+  \vskip2pt%
+}
+
+\def\theleftfooter{}
+\def\leftfooter#1{\def\theleftfooter{#1}}
+\def\insertleftfooter{\theleftfooter}
+\setbeamercolor*{leftfooter}{parent=palette secondary}
+\setbeamerfont*{leftfooter}{}
+\defbeamertemplate{leftfooter}{default}[1][]{%
+  \begin{beamercolorbox}[sep=8pt,center,#1]{leftfooter}
+    \usebeamerfont{leftfooter}\insertleftfooter
+  \end{beamercolorbox}
+}
+
+\def\therightfooter{}
+\def\rightfooter#1{\def\therightfooter{#1}}
+\def\insertrightfooter{\therightfooter}
+\setbeamercolor*{rightfooter}{parent=palette primary}
+\setbeamerfont*{rightfooter}{series=\bfseries}
+\defbeamertemplate{rightfooter}{default}[1][]{%
+  \begin{beamercolorbox}[sep=8pt,center,#1]{rightfooter}
+    \usebeamerfont{rightfooter}\insertrightfooter
+  \end{beamercolorbox}
+}
+
+%---------------------------------------
+% Footline
+%---------------------------------------
+
+\setbeamercolor*{author in head/foot}{parent=palette secondary}
+\setbeamercolor*{title in head/foot}{parent=palette tertiary}
+\setbeamercolor*{date in head/foot}{parent=palette primary}
+
+\setbeamercolor*{section in head/foot}{parent=palette tertiary}
+\setbeamercolor*{subsection in head/foot}{parent=palette primary}
+
+% \setbeamerfont*{page number in head/foot}{series=\normal}
+\setbeamertemplate{page number in head/foot}[framenumber]%
+
+\defbeamertemplate*{footline}{helianthusnofoot}{}
+
+\defbeamertemplate*{footline}{helianthusdatefoot}
+{%
+  \setbeamertemplate{date}[default][right]%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right,leftskip=1ex,rightskip=1ex]{cover footer}%
+      \hfill
+      \usebeamerfont{foot}\usebeamertemplate{date}
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\defbeamertemplate*{footline}{helianthus}
+{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left,leftskip=1ex]{leftfooter}%
+    % \usebeamerfont{author in head/foot}\insertshortauthor\expandafter\ifblank\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+    \usebeamerfont{leftfooter}\insertleftfooter
+  \end{beamercolorbox}%
+  % \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+  %   \usebeamerfont{title in head/foot}\insertshorttitle
+  % \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,leftskip=2ex,rightskip=2ex,sep=0pt]{rightfooter}%
+    \hfill%
+    {\usebeamerfont{rightfooter}%
+    \insertrightfooter}%
+    % \hfill%
+    \hspace*{2ex}
+    \usebeamercolor[fg]{page number in head/foot}%
+    \usebeamerfont{page number in head/foot}%
+    \usebeamertemplate{page number in head/foot}%
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Inner theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%---------------------------------------
+% Title page
+%---------------------------------------
+
+\defbeamertemplate*{title page}{helianthus}[1][]
+{
+  \vbox{}
+  \vfill
+  \begingroup
+    % \centering
+    \usebeamertemplate{title}
+    \vskip1em\par
+    \usebeamertemplate{author}
+    \usebeamertemplate{institute}
+  \endgroup
+  \vfill
+}[action]{
+  \setbeamertemplate{title}[default][left,#1]
+  \setbeamertemplate{author}[default][left,#1]
+  \setbeamertemplate{institute}[default][left,#1]
+  \setbeamertemplate{date}[default][left,#1]
+}
+
+%---------------------------------------
+% Section page
+%---------------------------------------
+
+\def\two@digits#1{\ifnum#1>9\else0\fi\number#1}
+% \renewcommand\thesection{\two@digits{\value{section}}}
+
+\defbeamertemplate*{section page}{helianthus}[1][]
+{
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[center,#1]{section page title}
+      \usebeamerfont{section page title}\insertsection
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[center,#1]{section page number}
+      \usebeamerfont{section page number}
+      \begin{tikzpicture}
+        \node[draw,thick,fill=white,fill opacity=0.8,diamond=1] (sectnumb) {\two@digits{\value{section}}};
+        \draw[white] ([yshift=-1ex]sectnumb.south) ++(-.15\paperwidth,0) node[fill,diamond,inner sep=1pt] {} -- ++(.3\paperwidth,0) node[fill,diamond,inner sep=1pt] {};
+      \end{tikzpicture}
+    \end{beamercolorbox}
+  \endgroup
+}
+
+\defbeamertemplate*{subsection page}{helianthus}[1][]
+{
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[center,#1]{section page title}
+      \usebeamerfont{section page title}\insertsection
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[center,#1]{section page number}
+      \usebeamerfont{section page number}
+      \begin{tikzpicture}
+        \node[draw,thick,fill=white,fill opacity=0.8,diamond=1] (sectnumb) {\two@digits{\value{section}}};
+        \node[draw,thick,fill=white,fill opacity=0.8,diamond=1,anchor=west,xshift=.5ex] (subsectnumb) at (sectnumb.east){\two@digits{\value{subsection}}};
+        \coordinate(midline) at ([xshift=.25ex,yshift=-1ex]sectnumb.east|-sectnumb.south);
+        \draw[white] (midline) ++(-.15\paperwidth,0) node[fill,diamond,inner sep=1pt] {} -- ++(.3\paperwidth,0) node[fill,diamond,inner sep=1pt] {};
+      \end{tikzpicture}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[center,#1]{section page subtitle}
+      \usebeamerfont{section page subtitle}\insertsubsection
+    \end{beamercolorbox}    
+  \endgroup
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MISC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%---------------------------------------
+% Content style
+%---------------------------------------
+\def\settitlepagestyle{
+  \setbeamertemplate{navigation symbols}[helianthusnonavi]
+  \setbeamertemplate{footline}[helianthus]
+  \setbeamertemplate{background canvas}[helianthustitle]
+  \setbeamertemplate{sidebar right}[helianthustitle]
+}
+\def\setsectionpagestyle{
+  \setbeamertemplate{navigation symbols}[helianthusnonavi]
+  \setbeamertemplate{footline}[helianthus]
+  \setbeamertemplate{background canvas}[helianthussection]
+  \setbeamertemplate{sidebar right}[helianthusnologo]
+}
+\def\setcontentstyle{
+  \setbeamertemplate{navigation symbols}[helianthus]
+  \setbeamertemplate{footline}[helianthus]
+  \setbeamertemplate{background canvas}[helianthus]
+  \setbeamertemplate{sidebar right}[helianthus]
+}
+\def\setbackgroundstyle{
+  \setbeamertemplate{navigation symbols}[helianthusnonavi]
+  \setbeamertemplate{footline}[helianthus]
+  \setbeamertemplate{background canvas}[helianthusbackground]
+  \setbeamertemplate{sidebar right}[helianthusnologo]
+}
+
+\mode
+<all>
