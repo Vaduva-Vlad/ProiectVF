@@ -25,10 +25,12 @@
 \clearpage
 \section{Abstract}
 The purpose of verifying the ACAS Xu benchmark is to assure the correctness of the results output by the benchmark. Such results can have real life consequences. Therefore, it is important to ensure the validity of these results in order to further improve and develop the benchmark.
-\section{Introduction\cite{vnn}}
-ACAS Xu is an air-to-air collision avoidance system designed for unmanned aircraft that issues horizontal turn advisories to avoid an intruder aircraft. Due the use of a large lookup table in the design, a neural network compression of the policy was proposed. The purpose of this paper is to document the process of verifying the ACAS Xu benchmark using two VNN tools, alpha-beta crown and nnenum.
-\section{ACAS Xu \cite{acasxu}}
-ACAS XU refers to the Automatic Collision Avoidance System - Experimental Upgrade. ACAS XU is a set of experimental enhancements to the existing ACAS II (Traffic Alert and Collision Avoidance System II) used in aviation. ACAS is a safety system designed to reduce the risk of mid-air collisions between aircraft.
+
+\section{Introduction}
+ACAS Xu\cite{vnn} is an air-to-air collision avoidance system designed for unmanned aircraft that issues horizontal turn advisories to avoid an intruder aircraft. Due the use of a large lookup table in the design, a neural network compression of the policy was proposed. The purpose of this paper is to document the process of verifying the ACAS Xu benchmark using two VNN tools, alpha-beta crown and nnenum.
+
+\section{ACAS Xu}
+ACAS XU\cite{acasxu} refers to the Airborne Collision Avoidance System For Unmanned Aircraft. ACAS XU is a set of experimental enhancements to the existing ACAS II (Airborne Collision Avoidance System II ) used in aviation. ACAS is a safety system designed to reduce the risk of mid-air collisions between aircraft.
 
 ACAS II is based on the Traffic Advisory (TA) and Resolution Advisory (RA) concepts. When ACAS II detects a potential collision threat, it provides pilots with advisories to take evasive action, such as a vertical resolution advisory to climb or descend.
 
@@ -41,8 +43,8 @@ FC is a Fully Connected layer inside the neural network. This is one one the lay
 ReLU\cite{relu} (Rectified Linear Unit) is an activation function that introduces the property of non-linearity to a deep learning model and solves the vanishing gradients issue.
 \newpage
 \section{Tools}
-\subsection{Alpha-Beta-Crown \cite{alpha-beta}}
-Alpha-Beta-CROWN is a neural network verification tool based on an efficient linear bound propagation framework and branch and bound. It can be accelerated efficiently on GPUs and scales well for big convolutional neural networks.\newline
+\subsection{Alpha-Beta-Crown}
+Alpha-Beta-CROWN\cite{alpha-beta} is a neural network verification tool based on an efficient linear bound propagation framework and branch and bound. It can be accelerated efficiently on GPUs and scales well for big convolutional neural networks.\newline
 Supported neural network architectures:
 \begin{itemize}
 \item Layers: fully connected, convolutional, pooling, transposed convolution
@@ -83,8 +85,8 @@ Alpha-beta-CROWN will begin to verify the benchmark and at the end it will outpu
 \newline
 Here, "total verified" and "total falsified" are the number of instances in which the benchmark returned a correct and incorrect answer, respectively. We can also notice a timeout of 0, which means that none of the instances timed out during the verification process.
 
-\subsection{Nnenum \cite{nnenum}}
-NNenum is a high performance neural network verification tool. It uses multiple layers of abstractions in order to quickly verify neural networks without the cost of completeness. During VNN-COMP 2020, nnenum was the fastest running tool. Even though every contestant ran their tool on their own hardware, nnenum's speed is attributed to several algorithmic optimizations\cite{bak2021nfm}.
+\subsection{Nnenum}
+NNenum\cite{nnenum} is a high performance neural network verification tool. It uses multiple layers of abstractions in order to quickly verify neural networks without the cost of completeness. During VNN-COMP 2020, nnenum was the fastest running tool. Even though every contestant ran their tool on their own hardware, nnenum's speed is attributed to several algorithmic optimizations\cite{bak2021nfm}.
 \newline
 Prerequisites: 
 \begin{itemize}
